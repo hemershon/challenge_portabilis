@@ -159,7 +159,8 @@
         <h6 class="dropdown-header d-flex align-items-center">
           <%= image_tag('img/illustrations/profiles/profile-2.png', class: 'dropdown-user-img') %>
           <div class="dropdown-user-details">
-            <div class="dropdown-user-details-name">Hemershon fSilva</div>
+            <%= current_admin.email %>
+            <div class="dropdown-user-details-name"></div>
             <div class="dropdown-user-details-email">hemershon@gmail.com</div>
           </div>
         </h6>
@@ -169,7 +170,8 @@
           Account
         </a>
         <a class="dropdown-item" href="#!">
-          <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+      <%= link_to 'Sair', destroy_admin_session_path, method: :delete %>
+          <%# <div class="dropdown-item-icon"><i data-feather="log-out"></i></div> %>
           Logout
         </a>
       </div>
