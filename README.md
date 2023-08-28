@@ -38,5 +38,3 @@ Para facilitar a avaliação do sistema, foram criados dois tipos de usuários d
 **Usuário Comum**
 - **Login**: user@teste.com
 - **Senha**: 123456
-
-Este sistema é o resultado de um esforço colaborativo e está pronto para atender às demandas da Empresa Portabilis. Ele oferece uma experiência segura e eficiente tanto para administradores quanto para usuários comuns.
