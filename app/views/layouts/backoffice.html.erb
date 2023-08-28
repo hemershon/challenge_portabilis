@@ -27,5 +27,16 @@
   <%= render partial: "layouts/backoffice_shared/menu"%>
   <%= yield %>
 
+  <% if notice %>
+    <script>
+      $.notify("<%= notice %>", "success");
+    </script>
+    <% end %>
+     <% if alert %>
+    <script>
+      $.notify("<%= alert %>", "error");
+    </script>
+    <% end %>
+
 </body>
 </html>
