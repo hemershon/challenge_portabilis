@@ -22,7 +22,8 @@ module Backoffice
 
     def update
       if @user.update(params_user)
-        redirect_to backoffice_users_path, notice: "Usuário atualizado com sucesso"
+        flash[:notice] = "Perfil atualizado com sucesso."
+        redirect_to @user, notice: "Usuário atualizado com sucesso"
       else
         render 'edit'
       end
@@ -48,7 +49,7 @@ module Backoffice
     end
 
     def params_user
-      params.require(:user).permit(:name, :email, :adjutancy, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :adjutancy, :active, :password, :password_confirmation)
     end
   end
 end

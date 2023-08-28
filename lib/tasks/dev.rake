@@ -23,6 +23,7 @@ namespace :dev do
         date: Faker::Date.birthday(min_age: 18, max_age: 65),
         adjutancy: Faker::Job.title,
         email: Faker::Internet.email,
+        active: [0,1].sample,
         password: "123456",
         password_confirmation: "123456",
       )
