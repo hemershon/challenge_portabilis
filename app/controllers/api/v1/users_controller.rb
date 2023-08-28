@@ -8,7 +8,7 @@ module Api
       def create
         @user = User.new(params_user)
         if @user.save
-          redirect_to backoffice_dashboard_index_path, notice: "Usuário criado com sucesso!" 
+          render 'index', status: :ok, locals: { users: @users }
         else
           render 'new'
         end
