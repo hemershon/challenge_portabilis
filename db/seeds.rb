@@ -13,3 +13,10 @@ Admin.create!(
   password_confirmation: "123456",
   role: 0
 )
+User.create!(
+  name: "Usuário ativo",
+  email: "user@teste.com",
+  password: "123456",
+  password_confirmation: "123456",
+  active: 0
+)
