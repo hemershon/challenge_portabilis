@@ -17,6 +17,10 @@ gem 'rails', '~> 7.0.7', '>= 7.0.7.2'
 gem 'rails-i18n', '~> 7.0', '>= 7.0.1'
 gem 'rubocop', '~> 1.36', require: false
 gem 'sass-rails', '~> 6.0'
+gem 'simple_form'
+gem 'kaminari'
+gem 'pundit'
+gem 'devise_token_auth'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'

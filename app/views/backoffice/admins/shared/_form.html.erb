@@ -20,7 +20,7 @@
                         <!-- Account page navigation-->
                         
     
-                                        <%= simple_form_for ([:backoffice, @user]) do |f| %>
+                                        <%= simple_form_for ([:backoffice, @admin]) do |f| %>
                             <div class="col-xl-8">
                                 <!-- Account details card-->
                                 <div class="card mb-4">
@@ -33,8 +33,9 @@
                                                   <%= f.input :email, label: 'Email' %>
                                                 </div>
                                                 <div class="col-md-6">
-                                                  <%= f.input :adjutancy, label: 'Profissão' %>
+                                                  <%= f.input :role, label: 'tipo de' %>
                                                 </div>
+                                                
                                             <div class="row gx-3 p-2 mb-1">
                                                 <div class="col-md-6">
                                                     <%= f.input :password, label: 'senha' %>
@@ -43,7 +44,7 @@
                                                     <%= f.input :password_confirmation, label: 'confirmar senha' %>
                                                 </div>
                                                  <div class="col-md-6">
-                                                    <%= f.input :date, label: 'Data do nascimento:' %>
+                                            
                                                 </div>
                                                
                                             </div>

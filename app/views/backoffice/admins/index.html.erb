@@ -27,10 +27,7 @@
             </label>
         </div>
     <div class="datatable-search">
-        <%= form_tag(@users_path, method: 'get') do %>
-        <%= text_field_tag :search, params[:search], class:'datatable-input', placeholder: "Pesquisa por nome" %>
-        <%= submit_tag 'Pesquisar' %>
-        <% end %>
+            <input class="datatable-input" placeholder="Search..." type="search" title="Search within table" aria-controls="datatablesSimple">
         </div>
 </div>
 
@@ -46,13 +43,7 @@
                 <button class="datatable-sorter">Email</button>
                 </th>
                 <th data-sortable="true" style="width: 12.484848484848484%;">
-                <button class="datatable-sorter">Date</button>
-                </th>
-                <th data-sortable="true" style="width: 7.757575757575758%;">
-                <button class="datatable-sorter">adjutancy</button>
-                </th>
-                <th data-sortable="true" style="width: 14.060606060606059%;">
-                <button class="datatable-sorter">Start date</button>
+                <button class="datatable-sorter">Tipo de acesso</button>
                 </th>
                 <th data-sortable="true" style="width: 11.15151515151515%;">
                 <button class="datatable-sorter">Actions</button></th>
@@ -60,13 +51,11 @@
                 </thead>
                 
                 <tbody>
-                     <% @users.each do |user|%>
+                     <% @admins.each do |admin|%>
                     <tr data-index="0">
-                        <td><%= user.name %></td>
-                        <td><%= user.email %></td>
-                        <td><%= user.date %></td>
-                        <td><%= user.adjutancy %></td>
-                        <td><div class="badge bg-primary text-white rounded-pill">Full-time</div></td>
+                        <td><%= admin.name %></td>
+                        <td><%= admin.email %></td>
+                        <td><div class="badge bg-primary text-white rounded-pill"><%= admin.role_br %></div></td>
                         <td>
                         <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
                         <%= link_to backoffice_user_path(:user_id), class:"btn btn-datatable btn-icon btn-transparent-dark", method: :delete do %>
@@ -82,7 +71,7 @@
                 </table></div>
                                             
                             <div class="datatable-bottom">
-                                <div class="datatable-info"><%= paginate @users %></div>
+                                <div class="datatable-info"></div>
                             </div></div>
                             </div>
                         </div>
@@ -101,6 +90,7 @@
                     </div>
                 </footer>
                 </main>
+</div>
             </div>
         </div>
         </div>

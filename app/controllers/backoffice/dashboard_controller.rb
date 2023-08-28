@@ -5,7 +5,11 @@ module Backoffice
     before_action :authenticate_user!, only: [:edit, :update, :destroy]
     
     def index
-      @users = User.all
+      @users = User.order(:name).page params[:page]
+
+      if params[:search].present?
+        @users = @users.where("name LIKE ?", "%#{params[:search]}%")
+      end
     end
 
     def show

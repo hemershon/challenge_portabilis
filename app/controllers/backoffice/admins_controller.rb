@@ -1,19 +1,19 @@
 module Backoffice
-  class UsersController < BackofficeController
-    before_action :set_user, only: [:edit, :update]
+  class AdminsController < BackofficeController
+    before_action :set_admin, only: [:edit, :update]
 
     def index 
-      @users = User.all
-
+      @admins = Admin.all
     end
     
     def new
-      @user = User.new
+      @admin = Admin.new
+      authorize @admin
     end
 
     def create
-      @user = User.new(params_user)
-      if @user.save
+      @admin = Admin.new(params_user)
+      if @admin.save
         redirect_to backoffice_dashboard_index_path, notice: "Usuário criado com sucesso!" 
       else
         render 'new'
@@ -21,7 +21,7 @@ module Backoffice
     end
 
     def update
-      if @user.update(params_user)
+      if @admin.update(params_admin)
         redirect_to backoffice_users_path, notice: "Usuário atualizado com sucesso"
       else
         render 'edit'
@@ -29,11 +29,12 @@ module Backoffice
     end
 
     def show 
-      @user = User.find_by(params[:user_id])
+      @admin = Admin.find_by(params[:admin_id])
     end
 
     def destroy
-     @user.destroy
+     @admin.destroy
+     authorize @admin 
     #   redirect_to backoffice_dashboard_index_path, notice: "deletado"
     #  else 
     #   render :index
@@ -43,12 +44,12 @@ module Backoffice
 
     private
 
-    def set_user
-      @user = User.find(params[:id])
+    def set_admin
+      @admin = Admin.find(params[:id])
     end
 
-    def params_user
-      params.require(:user).permit(:name, :email, :adjutancy, :password, :password_confirmation)
+    def params_admin
+      params.require(:admin).permit(:name, :email, :role, :password, :password_confirmation)
     end
   end
 end

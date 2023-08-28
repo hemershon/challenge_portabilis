@@ -1,4 +1,4 @@
-<div id="layoutSidenav_content">
+<div id="layoutSidenav_content"></div>
 <main>
   <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
    <div class="container-xl px-4">
@@ -27,10 +27,7 @@
             </label>
         </div>
     <div class="datatable-search">
-        <%= form_tag(@users_path, method: 'get') do %>
-        <%= text_field_tag :search, params[:search], class:'datatable-input', placeholder: "Pesquisa por nome" %>
-        <%= submit_tag 'Pesquisar' %>
-        <% end %>
+            <input class="datatable-input" placeholder="Search..." type="search" title="Search within table" aria-controls="datatablesSimple">
         </div>
 </div>
 
@@ -63,9 +60,9 @@
                      <% @users.each do |user|%>
                     <tr data-index="0">
                         <td><%= user.name %></td>
-                        <td><%= user.email %></td>
                         <td><%= user.date %></td>
                         <td><%= user.adjutancy %></td>
+                        <td><%= user.email %></td>
                         <td><div class="badge bg-primary text-white rounded-pill">Full-time</div></td>
                         <td>
                         <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
