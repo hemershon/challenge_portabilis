@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   end
   devise_for :admins
   devise_for :users
-  delete '/admins/sign_out', to: 'devise/sessions#destroy', as: :destroy_admin_session
-
   namespace :api do
     namespace :v1 do
       resources :users, defaults: { format: 'json' }
