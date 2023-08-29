@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class UsersController < ApplicationController
@@ -5,6 +7,7 @@ module Api
         @users = User.all
         render json: @users
       end
+
       def create
         @user = User.new(params_user)
         if @user.save

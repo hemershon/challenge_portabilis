@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module Backoffice
   class UsersController < BackofficeController
-    before_action :set_user, only: [:edit, :update]
+    before_action :require_admin, only: %i[destroy edit update]
+    before_action :set_user, only: %i[show edit update destroy]
 
-    def index 
+    def index
       @users = User.all
-
     end
-    
+
     def new
       @user = User.new
     end
@@ -14,7 +16,7 @@ module Backoffice
     def create
       @user = User.new(params_user)
       if @user.save
-        redirect_to backoffice_dashboard_index_path, notice: "Usuário criado com sucesso!" 
+        redirect_to backoffice_dashboard_index_path, notice: 'Usuário criado com sucesso!'
       else
         render 'new'
       end
@@ -22,30 +24,31 @@ module Backoffice
 
     def update
       if @user.update(params_user)
-        flash[:notice] = "Perfil atualizado com sucesso."
-        redirect_to @user, notice: "Usuário atualizado com sucesso"
+        flash[:notice] = 'Perfil atualizado com sucesso.'
+        redirect_to @user, notice: 'Usuário atualizado com sucesso'
       else
         render 'edit'
       end
     end
 
-    def show 
+    def show
       @user = User.find_by(params[:user_id])
     end
 
     def destroy
-     @user.destroy
-    #   redirect_to backoffice_dashboard_index_path, notice: "deletado"
-    #  else 
-    #   render :index
-    #  end
+      if current_user.admin? && @user != current_user
+        @user.destroy
+        flash[:notice] = 'Usuário excluído com sucesso.'
+      else
+        flas[:alert] = 'Você não tem permissão para excluir este usuário.'
+      end
+      redirect_to users_url
     end
-
 
     private
 
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by(params[:user_id])
     end
 
     def params_user

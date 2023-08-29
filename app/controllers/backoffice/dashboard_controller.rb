@@ -2,14 +2,14 @@
 
 module Backoffice
   class DashboardController < BackofficeController
-    before_action :authenticate_user!, only: [:edit, :update, :destroy]
-    
+    before_action :authenticate_user!, only: %i[edit update destroy]
+
     def index
       @users = User.order(:name).page params[:page]
 
-      if params[:search].present?
-        @users = @users.where("name LIKE ?", "%#{params[:search]}%")
-      end
+      return unless params[:search].present?
+
+      @users = @users.where('name LIKE ?', "%#{params[:search]}%")
     end
 
     def show

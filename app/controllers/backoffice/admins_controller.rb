@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module Backoffice
   class AdminsController < BackofficeController
-    before_action :set_admin, only: [:edit, :update]
+    before_action :set_admin, only: %i[edit update]
 
-    def index 
+    def index
       @admins = Admin.all
     end
-    
+
     def new
       @admin = Admin.new
       authorize @admin
@@ -14,7 +16,7 @@ module Backoffice
     def create
       @admin = Admin.new(params_user)
       if @admin.save
-        redirect_to backoffice_dashboard_index_path, notice: "Usuário criado com sucesso!" 
+        redirect_to backoffice_dashboard_index_path, notice: 'Usuário criado com sucesso!'
       else
         render 'new'
       end
@@ -22,25 +24,24 @@ module Backoffice
 
     def update
       if @admin.update(params_admin)
-        redirect_to backoffice_users_path, notice: "Usuário atualizado com sucesso"
+        redirect_to backoffice_users_path, notice: 'Usuário atualizado com sucesso'
       else
         render 'edit'
       end
     end
 
-    def show 
+    def show
       @admin = Admin.find_by(params[:admin_id])
     end
 
     def destroy
-     @admin.destroy
-     authorize @admin 
-    #   redirect_to backoffice_dashboard_index_path, notice: "deletado"
-    #  else 
-    #   render :index
-    #  end
+      @admin.destroy
+      authorize @admin
+      #   redirect_to backoffice_dashboard_index_path, notice: "deletado"
+      #  else
+      #   render :index
+      #  end
     end
-
 
     private
 

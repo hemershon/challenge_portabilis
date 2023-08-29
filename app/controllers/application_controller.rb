@@ -3,6 +3,13 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
+  def require_admin
+    unless current_user.admin?
+      flash[:alert] = 'Você não tem permissão para executar esta ação.'
+      redirect_to root_path
+    end
+  end
+
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # private
