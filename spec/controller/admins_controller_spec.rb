@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Backoffice::AdminsController, type: :controller do
@@ -60,5 +62,4 @@ RSpec.describe Backoffice::AdminsController, type: :controller do
   end
 
   # Mais testes para as outras ações aqui...
-
 end
