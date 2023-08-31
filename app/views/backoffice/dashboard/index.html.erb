@@ -1,109 +1,121 @@
 <div id="layoutSidenav_content">
-<main>
-  <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-   <div class="container-xl px-4">
-    <div class="page-header-content pt-4">
-     <div class="row align-items-center justify-content-between">
-      <div class="col-auto mt-4">
-        <h1 class="page-header-title">
-          <div class="page-header-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></div>
-            Usuários
-        </h1>
-        <div class="page-header-subtitle">Lista de Usuários</div>
-          </div>
-           </div>
-                            </div>
-                        </div>
-                    </header>
-                    <!-- Main page content-->
-                    <div class="container-xl px-4 mt-n10">
-                        <div class="card mb-4">
-                            <div class="card-header">Lista de usuários</div><a><%= link_to 'novo usuário',  new_backoffice_user_path, class: "btn btn-secondar" %></a>
-                            <div class="card-body">
-                                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns"><div class="datatable-top">
-    <div class="datatable-dropdown">
-            <label>
-                <select class="datatable-selector"><option value="5">5</option><option value="10" selected="">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option></select> entries per page
-            </label>
-        </div>
-    <div class="datatable-search">
-        <%= form_tag(@users_path, method: 'get') do %>
-        <%= text_field_tag :search, params[:search], class:'datatable-input', placeholder: "Pesquisa por nome" %>
-        <%= submit_tag 'Pesquisar' %>
-        <% end %>
-        </div>
-</div>
-
-<div class="datatable-container">
-    <table id="datatablesSimple" class="datatable-table">
-        <thead>
-
-            <tr>
-                <th data-sortable="true" style="width: 13.575757575757578%;">
-                <button class="datatable-sorter">Name</button>
-                </th>
-                <th data-sortable="true" style="width: 17.09090909090909%;">
-                <button class="datatable-sorter">Email</button>
-                </th>
-                <th data-sortable="true" style="width: 12.484848484848484%;">
-                <button class="datatable-sorter">Date</button>
-                </th>
-                <th data-sortable="true" style="width: 7.757575757575758%;">
-                <button class="datatable-sorter">adjutancy</button>
-                </th>
-                <th data-sortable="true" style="width: 14.060606060606059%;">
-                <button class="datatable-sorter">Start date</button>
-                </th>
-                <th data-sortable="true" style="width: 11.15151515151515%;">
-                <button class="datatable-sorter">Actions</button></th>
-                </tr>
-                </thead>
-                
-                <tbody>
-                     <% @users.each do |user|%>
-                    <tr data-index="0">
-                        <td><%= user.name %></td>
-                        <td><%= user.email %></td>
-                        <td><%= user.date %></td>
-                        <td><%= user.adjutancy %></td>
-                        <td><div class="badge bg-primary text-white rounded-pill"><%= user.active ? "Ativo" : "Inativo" %></p></div></td>
-                        <td>
-                        <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
-                        <%= link_to destroy_admin_session_path(user), method: :delete, class: "btn btn-datatable btn-icon btn-transparent-dark", data: { confirm: 'Tem certeza de que deseja excluir este usuário?' } do %>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                        <% end %>
-                        </td>
-                        </tr>
-                        <tr data-index="1">
-                                                
-                                               
-                </tbody>
-                <% end %>
-                </table></div>
-                                            
-                            <div class="datatable-bottom">
-                                <div class="datatable-info"><%= paginate @users %></div>
-                            </div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                <footer class="footer-admin mt-auto footer-light">
-                    <div class="container-xl px-4">
-                        <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
-                            <div class="col-md-6 text-md-end small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                </main>
+  <main>
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+      <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-auto mt-4">
+              <h1 class="page-header-title">
+                <div class="page-header-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></div>
+                Usuários
+              </h1>
+              <div class="page-header-subtitle">Lista de Usuários</div>
             </div>
+          </div>
         </div>
+      </div>
+    </header>
+    <!-- Main page content-->
+    <div class="container-xl px-4 mt-n10">
+      <div class="card mb-4">
+        <div class="card-header">Lista de usuários</div>
+        <a><%= link_to 'novo usuário',  new_backoffice_user_path, class: "btn btn-secondar" %></a>
+        <div class="card-body">
+          <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+            <div class="datatable-top">
+              <div class="datatable-dropdown">
+                <label>
+                  <select class="datatable-selector"><option value="5">5</option><option value="10" selected="">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option></select> entries per page
+                </label>
+              </div>
+              <div class="datatable-search">
+                <%= form_tag(@users_path, method: 'get') do %>
+                  <%= text_field_tag :search, params[:search], class:'datatable-input', placeholder: "Pesquisa por nome" %>
+                  <%= submit_tag 'Pesquisar' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="datatable-container">
+              <table id="datatablesSimple" class="datatable-table">
+                <thead>
+                  <tr>
+                    <th data-sortable="true" style="width: 13.575757575757578%;">
+                      <button class="datatable-sorter">Nome</button>
+                    </th>
+                    <th data-sortable="true" style="width: 17.09090909090909%;">
+                      <button class="datatable-sorter">Email</button>
+                    </th>
+                    <th data-sortable="true" style="width: 12.484848484848484%;">
+                      <button class="datatable-sorter">Data</button>
+                    </th>
+                    <th data-sortable="true" style="width: 7.757575757575758%;">
+                      <button class="datatable-sorter">Profissão</button>
+                    </th>
+                    <th data-sortable="true" style="width: 7.757575757575758%;">
+                      <button class="datatable-sorter">Tipo</button>
+                    </th>
+                    <th data-sortable="true" style="width: 14.060606060606059%;">
+                      <button class="datatable-sorter">Situação</button>
+                    </th>
+                    <th data-sortable="true" style="width: 14.060606060606059%;">
+                      <button class="datatable-sorter">Ativa/Inativa</button>
+                    </th>
+                    <th data-sortable="true" style="width: 11.15151515151515%;">
+                      <button class="datatable-sorter">ação</button></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.each do |user|%>
+                    <tr data-index="0">
+                      <td><%= user.name %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.date %></td>
+                      <td><%= user.adjutancy %></td>
+                      <td>
+                       <%= content_tag(:span, user.role ? "Administrador" : "Usuário", class: user.role ? "badge bg-success text-white rounded-pill" : "badge bg-info text-white rounded-pill")%>
+                      <td>
+                        <%= link_to user.active ? 'Desativar' : 'Ativar', update_active_backoffice_user_path(@user), method: :patch %>                      </div>
+                    </td>
+                    <td>
+                      <% if admin? %>
+                      <%= link_to "Inativar/Ativar", update_active_backoffice_user_path(@user), method: :patch, data: { confirm: 'Tem certeza?' } %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+                      <%= link_to destroy_admin_session_path(user), method: :delete, class: "btn btn-datatable btn-icon btn-transparent-dark", data: { confirm: 'Tem certeza de que deseja excluir este usuário?' } do %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr data-index="1">
+                  </tbody>
+                <% end %>
+              </table>
+            </div>
+            <div class="datatable-bottom">
+              <div class="datatable-info"><%= paginate @users %></div>
+            </div>
+          </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+      </div>
+    </div>
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+</body>

@@ -2,7 +2,7 @@
 
 module Backoffice
   class UsersController < BackofficeController
-    before_action :require_admin, only: %i[destroy edit update]
+    before_action :authorize_admin, only: %i[destroy update_active]
     before_action :set_user, only: %i[show edit update destroy]
 
     def index
@@ -31,6 +31,13 @@ module Backoffice
       end
     end
 
+    def update_active
+     @user = User.find(params[:id])
+     @user.update(active: !@user.active)
+
+     redirect_to user_path, notice: "usu"
+    end
+
     def show
       @user = User.find_by(params[:user_id])
     end
@@ -42,17 +49,24 @@ module Backoffice
       else
         flas[:alert] = 'Você não tem permissão para excluir este usuário.'
       end
-      redirect_to users_url
+      redirect_to root_path
     end
 
     private
+
+    def authorize_admin
+      unless current_user.admin?
+        flash[:alert] = "Você não tem permissão para realizar esta ação."
+        redirect_to root_path
+      end
+    end
 
     def set_user
       @user = User.find_by(params[:user_id])
     end
 
     def params_user
-      params.require(:user).permit(:name, :email, :adjutancy, :active, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :adjutancy, :active, :date, :role, :password, :password_confirmation)
     end
   end
 end
