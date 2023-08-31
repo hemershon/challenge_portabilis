@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   namespace :backoffice do
     get 'dashboard/index'
     resources :users do
-      member do
-        patch 'update_active'
-      end
+      patch 'update_active', to: 'update_active', as: 'update_active_backoffice_user'
     end
     resources :admins
   end

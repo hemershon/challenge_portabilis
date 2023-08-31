@@ -20,5 +20,5 @@ User.create!(
   password: '123456',
   password_confirmation: '123456',
   active: 0,
-  role: 'Administrador'
+  role: "admin"
 )

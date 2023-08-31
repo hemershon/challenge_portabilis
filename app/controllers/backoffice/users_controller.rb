@@ -32,10 +32,16 @@ module Backoffice
     end
 
     def update_active
-     @user = User.find(params[:id])
-     @user.update(active: !@user.active)
-
-     redirect_to user_path, notice: "usu"
+      @user = User.find(params[:id])
+      new_active_status = !@user.active
+  
+      if @user.update(active: new_active_status)
+        flash[:success] = "Status ativo atualizado com sucesso!"
+      else
+        flash[:error] = "Não foi possível atualizar o status ativo do usuário."
+      end
+  
+      redirect_to backoffice_users_path # Ou a página que você preferir
     end
 
     def show
