@@ -3,7 +3,11 @@
 Rails.application.routes.draw do
   namespace :backoffice do
     get 'dashboard/index'
-    resources :users
+    resources :users do
+      member do
+        patch 'update_active'
+      end
+    end
     resources :admins
   end
   devise_for :admins

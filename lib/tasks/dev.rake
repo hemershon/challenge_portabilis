@@ -24,6 +24,7 @@ namespace :dev do
         adjutancy: Faker::Job.title,
         email: Faker::Internet.email,
         active: [0, 1].sample,
+        role: ['Administrador', 'Usuário'].sample,
         password: '123456',
         password_confirmation: '123456'
       )
